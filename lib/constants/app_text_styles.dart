@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class AppTextStyles {
   AppTextStyles._();
 
-  // Header Styles
   static const TextStyle headerLarge = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.w800,
@@ -19,7 +18,6 @@ class AppTextStyles {
     letterSpacing: 0.2,
   );
 
-  // Button Styles
   static const TextStyle button = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 15,
@@ -27,7 +25,6 @@ class AppTextStyles {
     letterSpacing: 0.5,
   );
 
-  // Card Title Styles
   static TextStyle cardTitle = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w700,
@@ -35,7 +32,6 @@ class AppTextStyles {
     letterSpacing: -0.3,
   );
 
-  // Empty State Styles
   static TextStyle emptyStateTitle = TextStyle(
     color: Colors.grey.shade700,
     fontSize: 15,
@@ -49,7 +45,6 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
   );
 
-  // Timeline Item Styles
   static const TextStyle timelineDate = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w700,

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-/// Paints a simple smiley face whose expression is driven by [smileValue].
-///
-/// [smileValue] ranges from -1.0 (full frown) to 0.0 (flat) to 1.0 (full smile).
 class MoodFacePainter extends CustomPainter {
-  final double smileValue; // -1.0 → 0.0 → 1.0
+  final double smileValue;
   final Color faceColor;
   final Color strokeColor;
 
@@ -31,10 +28,8 @@ class MoodFacePainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
-    // Face circle
     canvas.drawCircle(center, radius, fillPaint);
 
-    // Eyes
     final eyeY = center.dy - radius * 0.22;
     final eyeOffsetX = radius * 0.28;
     final eyeRadius = radius * 0.10;
@@ -51,11 +46,9 @@ class MoodFacePainter extends CustomPainter {
 
     strokePaint.style = PaintingStyle.stroke;
 
-    // Mouth — cubic Bézier driven by smileValue
     final mouthY = center.dy + radius * 0.20;
     final mouthHalfWidth = radius * 0.36;
-    final curveDrop =
-        radius * 0.28 * smileValue; // positive = smile, negative = frown
+    final curveDrop = radius * 0.28 * smileValue;
 
     final mouthPath = Path()
       ..moveTo(center.dx - mouthHalfWidth, mouthY)

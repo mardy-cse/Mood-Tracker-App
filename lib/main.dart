@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 
-/// ==========================================
-/// 🔧 SharedPreferences Configuration
-/// ==========================================
-/// Control whether mood data should persist across app restarts.
-///
-/// ✅ true  → Mood entries will be saved and restored (uses SharedPreferences)
-/// ❌ false → Mood entries will NOT be saved (data cleared on app restart)
-///
-/// Usage: Simply change the value below and restart the app
-/// ==========================================
 const bool enableSharedPreferences = true;
 
 void main() {

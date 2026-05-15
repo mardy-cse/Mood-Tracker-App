@@ -26,10 +26,8 @@ class NeutralFacePainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
-    // Face circle
     canvas.drawCircle(center, radius, fillPaint);
 
-    // Eyes (circles)
     final eyeY = center.dy - radius * 0.25;
     final eyeOffsetX = radius * 0.3;
     final eyeRadius = radius * 0.11;
@@ -46,7 +44,6 @@ class NeutralFacePainter extends CustomPainter {
 
     strokePaint.style = PaintingStyle.stroke;
 
-    // Neutral mouth - straight line
     final mouthY = center.dy + radius * 0.25;
     final mouthHalfWidth = radius * 0.35;
     final mouthPath = Path()

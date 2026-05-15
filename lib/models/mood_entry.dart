@@ -13,7 +13,6 @@ class MoodEntry {
     required this.moodColor,
   });
 
-  // Convert MoodEntry to JSON Map
   Map<String, dynamic> toJson() {
     return {
       'date': date.toIso8601String(),
@@ -22,7 +21,6 @@ class MoodEntry {
     };
   }
 
-  // Create MoodEntry from JSON Map
   factory MoodEntry.fromJson(Map<String, dynamic> json) {
     return MoodEntry(
       date: DateTime.parse(json['date'] as String),

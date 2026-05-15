@@ -23,10 +23,8 @@ class SadFacePainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
-    // Face circle
     canvas.drawCircle(center, radius, fillPaint);
 
-    // Eyes (circles)
     final eyeY = center.dy - radius * 0.25;
     final eyeOffsetX = radius * 0.3;
     final eyeRadius = radius * 0.11;
@@ -43,7 +41,6 @@ class SadFacePainter extends CustomPainter {
 
     strokePaint.style = PaintingStyle.stroke;
 
-    // Sad frown using drawArc (downward curve)
     final mouthRect = Rect.fromCenter(
       center: Offset(center.dx, center.dy + radius * 0.5),
       width: radius * 0.8,

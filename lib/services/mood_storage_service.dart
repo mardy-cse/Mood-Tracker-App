@@ -5,7 +5,6 @@ import '../models/mood_entry.dart';
 class MoodStorageService {
   static const String _storageKey = 'mood_entries';
 
-  // Save mood entries to SharedPreferences
   Future<bool> saveMoodEntries(List<MoodEntry> entries) async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -17,7 +16,6 @@ class MoodStorageService {
     }
   }
 
-  // Load mood entries from SharedPreferences
   Future<List<MoodEntry>> loadMoodEntries() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -36,7 +34,6 @@ class MoodStorageService {
     }
   }
 
-  // Clear all mood entries from SharedPreferences
   Future<bool> clearMoodEntries() async {
     try {
       final prefs = await SharedPreferences.getInstance();
