@@ -19,6 +19,16 @@ class _HomeScreenState extends State<HomeScreen> {
   final MoodController _controller = MoodController();
 
   @override
+  void initState() {
+    super.initState();
+    _loadSavedMoods();
+  }
+
+  Future<void> _loadSavedMoods() async {
+    await _controller.loadEntries();
+  }
+
+  @override
   void dispose() {
     _disposeController();
     super.dispose();
