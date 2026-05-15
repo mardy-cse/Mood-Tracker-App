@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../models/mood_entry.dart';
 import 'empty_timeline_state.dart';
@@ -16,21 +17,31 @@ class MoodTimelineWidget extends StatelessWidget {
       return const EmptyTimelineState();
     }
 
-    return _buildTimelineList(moodEntries);
+    return _buildTimelineList(context, moodEntries);
   }
 
-  Widget _buildTimelineList(List<MoodEntry> moodEntries) {
+  Widget _buildTimelineList(BuildContext context, List<MoodEntry> moodEntries) {
     final reversedEntries = moodEntries.reversed.toList();
 
     return SizedBox(
       height: 140,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: reversedEntries.length,
-        padding: const EdgeInsets.only(right: 12),
-        separatorBuilder: (_, __) => const SizedBox(width: 14),
-        itemBuilder: (context, index) =>
-            _buildTimelineItem(reversedEntries, index),
+      child: ScrollConfiguration(
+        behavior: const MaterialScrollBehavior().copyWith(
+          dragDevices: {
+            PointerDeviceKind.touch,
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.trackpad,
+          },
+        ),
+        child: ListView.separated(
+          physics: const AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemCount: reversedEntries.length,
+          padding: const EdgeInsets.only(right: 12),
+          separatorBuilder: (_, __) => const SizedBox(width: 14),
+          itemBuilder: (context, index) =>
+              _buildTimelineItem(reversedEntries, index),
+        ),
       ),
     );
   }
