@@ -8,14 +8,20 @@ class MoodController {
     <MoodEntry>[],
   );
 
-  void addMoodEntry(MoodEntry entry) {
-    final updated = List<MoodEntry>.from(entries.value)..add(entry);
+  void addMoodEntry(MoodEntry? entry) {
+    if (entry == null) return;
 
-    if (updated.length > maxEntries) {
-      updated.removeAt(0);
+    try {
+      final updated = List<MoodEntry>.from(entries.value)..add(entry);
+
+      if (updated.length > maxEntries) {
+        updated.removeAt(0);
+      }
+
+      entries.value = List<MoodEntry>.unmodifiable(updated);
+    } catch (e) {
+      debugPrint('Error adding mood entry: $e');
     }
-
-    entries.value = List<MoodEntry>.unmodifiable(updated);
   }
 
   void clear() {
@@ -23,6 +29,10 @@ class MoodController {
   }
 
   void dispose() {
-    entries.dispose();
+    try {
+      entries.dispose();
+    } catch (e) {
+      debugPrint('Error disposing controller: $e');
+    }
   }
 }
