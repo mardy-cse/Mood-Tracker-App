@@ -9,18 +9,23 @@ import '../widgets/mood_timeline_widget.dart';
 import '../widgets/timeline_card.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final bool useSharedPreferences;
+
+  const HomeScreen({super.key, this.useSharedPreferences = true});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final MoodController _controller = MoodController();
+  late final MoodController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = MoodController(
+      enablePersistence: widget.useSharedPreferences,
+    );
     _loadSavedMoods();
   }
 

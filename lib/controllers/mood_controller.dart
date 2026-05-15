@@ -10,23 +10,34 @@ class MoodController {
   );
 
   final MoodStorageService _storageService = MoodStorageService();
+  final bool enablePersistence;
   bool _isInitialized = false;
+
+  MoodController({this.enablePersistence = true});
 
   // Load saved mood entries from storage
   Future<void> loadEntries() async {
     if (_isInitialized) return;
 
+    // Skip loading if persistence is disabled
+    if (!enablePersistence) {
+      _isInitialized = true;
+      return;
+    }
+
     try {
       final loadedEntries = await _storageService.loadMoodEntries();
-      
+
       // Keep only the last maxEntries items
       if (loadedEntries.length > maxEntries) {
-        final recentEntries = loadedEntries.sublist(loadedEntries.length - maxEntries);
+        final recentEntries = loadedEntries.sublist(
+          loadedEntries.length - maxEntries,
+        );
         entries.value = List<MoodEntry>.unmodifiable(recentEntries);
       } else {
         entries.value = List<MoodEntry>.unmodifiable(loadedEntries);
       }
-      
+
       _isInitialized = true;
     } catch (e) {
       debugPrint('Error loading mood entries: $e');
@@ -36,6 +47,9 @@ class MoodController {
 
   // Save mood entries to storage
   Future<void> _saveEntries() async {
+    // Skip saving if persistence is disabled
+    if (!enablePersistence) return;
+
     try {
       await _storageService.saveMoodEntries(entries.value);
     } catch (e) {
@@ -54,7 +68,7 @@ class MoodController {
       }
 
       entries.value = List<MoodEntry>.unmodifiable(updated);
-      
+
       // Save to persistent storage
       _saveEntries();
     } catch (e) {
@@ -64,7 +78,11 @@ class MoodController {
 
   Future<void> clear() async {
     entries.value = <MoodEntry>[];
-    await _storageService.clearMoodEntries();
+
+    // Only clear storage if persistence is enabled
+    if (enablePersistence) {
+      await _storageService.clearMoodEntries();
+    }
   }
 
   void dispose() {
