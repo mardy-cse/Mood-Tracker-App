@@ -58,7 +58,7 @@ class _TimelineItemState extends State<TimelineItem> {
     return BoxDecoration(
       gradient: AppDecorations.timelineItemGradient(color),
       borderRadius: AppDecorations.borderRadiusLarge,
-      border: Border.all(color: color.withOpacity(0.25), width: 1.5),
+      border: Border.all(color: color.withAlpha(64), width: 1.5),
       boxShadow: AppDecorations.timelineItemShadow(color),
     );
   }
@@ -113,7 +113,7 @@ class _TimelineItemState extends State<TimelineItem> {
     final color = widget.entry.moodColor;
     return Text(
       widget.formattedDate,
-      style: AppTextStyles.timelineDate.copyWith(color: color.withOpacity(0.9)),
+      style: AppTextStyles.timelineDate.copyWith(color: color.withAlpha(230)),
     );
   }
 }

@@ -38,7 +38,7 @@ class MoodTimelineWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: reversedEntries.length,
           padding: const EdgeInsets.only(right: 12),
-          separatorBuilder: (_, __) => const SizedBox(width: 14),
+          separatorBuilder: (context, index) => const SizedBox(width: 14),
           itemBuilder: (context, index) =>
               _buildTimelineItem(reversedEntries, index),
         ),
@@ -50,7 +50,6 @@ class MoodTimelineWidget extends StatelessWidget {
     if (index >= entries.length) return const SizedBox.shrink();
 
     final entry = entries[index];
-    if (entry == null) return const SizedBox.shrink();
 
     return TimelineItem(entry: entry, formattedDate: _formatDate(entry.date));
   }

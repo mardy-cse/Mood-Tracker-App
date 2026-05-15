@@ -17,7 +17,11 @@ class MoodEntry {
     return {
       'date': date.toIso8601String(),
       'moodType': moodType.name,
-      'moodColorValue': moodColor.value,
+      'moodColorValue':
+          (moodColor.a * 255).toInt() << 24 |
+          (moodColor.r * 255).toInt() << 16 |
+          (moodColor.g * 255).toInt() << 8 |
+          (moodColor.b * 255).toInt(),
     };
   }
 

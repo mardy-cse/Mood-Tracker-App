@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
 import '../constants/app_text_styles.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -12,7 +11,7 @@ class HeaderSection extends StatelessWidget {
       children: [
         const SizedBox(height: 12),
         const Text(
-          'How are you feeling today?.',
+          'How are you feeling today?',
           style: AppTextStyles.headerLarge,
         ),
         const SizedBox(height: 8),

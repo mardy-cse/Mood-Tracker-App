@@ -10,7 +10,7 @@ class AppDecorations {
 
   static List<BoxShadow> cardShadow = [
     BoxShadow(
-      color: Colors.black.withOpacity(0.04),
+      color: Colors.black.withAlpha(10),
       blurRadius: 20,
       offset: const Offset(0, 4),
       spreadRadius: 0,
@@ -19,7 +19,7 @@ class AppDecorations {
 
   static List<BoxShadow> buttonShadow(Color color) => [
     BoxShadow(
-      color: color.withOpacity(0.3),
+      color: color.withAlpha(77),
       blurRadius: 12,
       offset: const Offset(0, 6),
       spreadRadius: 0,
@@ -28,7 +28,7 @@ class AppDecorations {
 
   static List<BoxShadow> timelineItemShadow(Color color) => [
     BoxShadow(
-      color: color.withOpacity(0.15),
+      color: color.withAlpha(38),
       blurRadius: 10,
       offset: const Offset(0, 4),
       spreadRadius: 0,
@@ -37,7 +37,7 @@ class AppDecorations {
 
   static List<BoxShadow> faceContainerShadow(Color color) => [
     BoxShadow(
-      color: color.withOpacity(0.2),
+      color: color.withAlpha(51),
       blurRadius: 12,
       offset: const Offset(0, 3),
       spreadRadius: 0,
@@ -45,19 +45,19 @@ class AppDecorations {
   ];
 
   static List<BoxShadow> moodIndicatorShadow(Color color) => [
-    BoxShadow(color: color.withOpacity(0.4), blurRadius: 4, spreadRadius: 1),
+    BoxShadow(color: color.withAlpha(102), blurRadius: 4, spreadRadius: 1),
   ];
 
   static LinearGradient buttonGradient(Color color) => LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [color, color.withOpacity(0.8)],
+    colors: [color, color.withAlpha(204)],
   );
 
   static LinearGradient timelineItemGradient(Color color) => LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [color.withOpacity(0.08), color.withOpacity(0.15)],
+    colors: [color.withAlpha(20), color.withAlpha(38)],
   );
 
   static LinearGradient emptyStateGradient = LinearGradient(
@@ -67,7 +67,7 @@ class AppDecorations {
   );
 
   static BoxDecoration iconBackground(Color color) => BoxDecoration(
-    color: color.withOpacity(0.1),
+    color: color.withAlpha(26),
     borderRadius: borderRadiusSmall,
   );
 }
