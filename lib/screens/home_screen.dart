@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../controllers/mood_controller.dart';
 import '../models/mood_entry.dart';
-import '../painters/mood_face_painter.dart';
+import '../painters/happy_face_painter.dart';
+import '../painters/neutral_face_painter.dart';
+import '../painters/sad_face_painter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,14 +39,23 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  double _smileValue(MoodType moodType) {
+  CustomPainter _getFacePainter(MoodType moodType, Color strokeColor) {
     switch (moodType) {
       case MoodType.happy:
-        return 1.0;
+        return HappyFacePainter(
+          faceColor: Colors.white,
+          strokeColor: strokeColor,
+        );
       case MoodType.neutral:
-        return 0.0;
+        return NeutralFacePainter(
+          faceColor: Colors.white,
+          strokeColor: strokeColor,
+        );
       case MoodType.sad:
-        return -1.0;
+        return SadFacePainter(
+          faceColor: Colors.white,
+          strokeColor: strokeColor,
+        );
     }
   }
 
@@ -90,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const SizedBox(height: 8),
               const Text(
-                'How are you feeling today?',
+                'How are you feeling today?...',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
@@ -173,10 +184,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8),
                                   child: CustomPaint(
-                                    painter: MoodFacePainter(
-                                      smileValue: _smileValue(entry.moodType),
-                                      faceColor: Colors.white,
-                                      strokeColor: entry.moodColor,
+                                    painter: _getFacePainter(
+                                      entry.moodType,
+                                      entry.moodColor,
                                     ),
                                   ),
                                 ),
