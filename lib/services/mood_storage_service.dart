@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/mood_entry.dart';
 
@@ -12,6 +13,7 @@ class MoodStorageService {
       final jsonString = jsonEncode(jsonList);
       return await prefs.setString(_storageKey, jsonString);
     } catch (e) {
+      debugPrint('Error saving mood entries: $e');
       return false;
     }
   }
@@ -30,6 +32,7 @@ class MoodStorageService {
           .map((json) => MoodEntry.fromJson(json as Map<String, dynamic>))
           .toList();
     } catch (e) {
+      debugPrint('Error loading mood entries: $e');
       return [];
     }
   }
@@ -39,6 +42,7 @@ class MoodStorageService {
       final prefs = await SharedPreferences.getInstance();
       return await prefs.remove(_storageKey);
     } catch (e) {
+      debugPrint('Error clearing mood entries: $e');
       return false;
     }
   }

@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _controller = MoodController(
       enablePersistence: widget.useSharedPreferences,
+      onError: _showErrorMessage,
     );
     _loadSavedMoods();
   }
@@ -58,7 +59,25 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     } catch (e) {
       debugPrint('Error adding mood: $e');
+      _showErrorMessage('Failed to add mood');
     }
+  }
+
+  void _showErrorMessage(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red.shade400,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
+        action: SnackBarAction(
+          label: 'OK',
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+      ),
+    );
   }
 
   @override

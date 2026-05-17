@@ -11,9 +11,10 @@ class MoodController {
 
   final MoodStorageService _storageService = MoodStorageService();
   final bool enablePersistence;
+  final void Function(String)? onError;
   bool _isInitialized = false;
 
-  MoodController({this.enablePersistence = true});
+  MoodController({this.enablePersistence = true, this.onError});
 
   Future<void> loadEntries() async {
     if (_isInitialized) return;
@@ -38,6 +39,7 @@ class MoodController {
       _isInitialized = true;
     } catch (e) {
       debugPrint('Error loading mood entries: $e');
+      onError?.call('Failed to load saved moods');
       _isInitialized = true;
     }
   }
@@ -46,9 +48,13 @@ class MoodController {
     if (!enablePersistence) return;
 
     try {
-      await _storageService.saveMoodEntries(entries.value);
+      final success = await _storageService.saveMoodEntries(entries.value);
+      if (!success) {
+        onError?.call('Failed to save mood. Please try again.');
+      }
     } catch (e) {
       debugPrint('Error saving mood entries: $e');
+      onError?.call('Failed to save mood. Please try again.');
     }
   }
 
