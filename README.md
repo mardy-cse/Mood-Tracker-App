@@ -22,7 +22,7 @@ A simple Flutter app where you can track how you're feeling each day. Just tap a
 
 ## Links
 
-Live demo: _Will add once deployed_
+Live demo: [https://mood-tracker-app-5d803.web.app](https://mood-tracker-app-5d803.web.app)
 
 Repo: [https://github.com/mardy-cse/Mood-Tracker-App](https://github.com/mardy-cse/Mood-Tracker-App)
 
